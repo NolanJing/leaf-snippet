@@ -2,7 +2,7 @@
   "name": "leaf-snippet",
   "displayName": "leaf-snippet",
   "description": "",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "publisher": "Nolan",
   "engines": {
     "vscode": "^1.29.0"
@@ -14,8 +14,9 @@
     "type": "git",
     "url": "https://github.com/NolanJing/leaf-i18n"
   },
+  "icon": "icon.png",
   "scripts": {
-    "build": "node ./snippets/scripts/generate-snippets-json.js",
+    "build": "node ./snippets/scripts/build.js",
     "pkg": "vsce package"
   },
   "contributes": {

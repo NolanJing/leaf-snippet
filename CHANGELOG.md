@@ -1,9 +1,5 @@
 # Change Log
 
-All notable changes to the "leaf-snippet" extension will be documented in this file.
+- 1.0.1  增加自定义代码片段功能
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
-
-## [Unreleased]
-
-- Initial release
+- 1.0.0  增加对Leaf常用代码片段的支持

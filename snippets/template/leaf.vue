@@ -4,7 +4,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 @Component({
-    name: $0,
+    name: '$0',
 })
 export default class $0 extends Vue {}
 </script>

@@ -2,10 +2,15 @@
 <template>
   <view-container>
     <div class="ef-action-wrap">
+      <el-button type="primary">新建</el-button>
       <div class="ef-search--group">
         <el-input v-model="form.name">
-          <el-button icon="el-icon-search" slot="append"></el-button>
+          <el-button icon="el-icon-search" slot="append" @click.stop=""></el-button>
         </el-input>
+        <div class="ef-button--group">
+          <el-button icon="el-icon-refresh"></el-button>
+          <el-button icon="el-icon-download"></el-button>
+        </div>
       </div>
     </div>
 
@@ -55,7 +60,7 @@ export default class $1 extends Mixins(DateFormat, PageData) {
   public form = {
     name: '',
   };
-  public $0 = []
+  public $0 = [];
   public mounted() {
     this.getPageList();
   }
