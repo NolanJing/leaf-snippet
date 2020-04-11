@@ -1,4 +1,3 @@
-<%desc 带搜索的列表页%> 
 <template>
   <view-container>
     <div class="ef-action-wrap">
@@ -10,7 +9,7 @@
     </div>
 
     <div v-loading="loading.table">
-      <el-table :data="$0">
+      <el-table :data="clusterList">
         <el-table-column prop="name" label="名称">
           <template slot-scope="{row}">
             <el-button type="text" @click="checkDetail(row)">{{row.name}}</el-button>
@@ -43,19 +42,19 @@
 import { Component, Mixins } from 'vue-property-decorator';
 import DateFormat from '@/mixins/date_format';
 import PageData from '@/mixins/page_data';
-// import HTTP_API from '@/api/app/controller-name';
+import HTTP_API from '@/api/app/controller-name';
 
 @Component({
-  name: '$1',
+  name: ,
 })
-export default class $1 extends Mixins(DateFormat, PageData) {
+export default class  extends Mixins(DateFormat, PageData) {
   public loading: LoadingVO = {
     table: false,
   };
   public form = {
     name: '',
   };
-  public $0 = []
+
   public mounted() {
     this.getPageList();
   }
@@ -65,7 +64,7 @@ export default class $1 extends Mixins(DateFormat, PageData) {
       this.loading.table = true;
       let r = await HTTP_API.do(params);
       if (r.data.code == 0) {
-        this.$0 = r.data.data.records;
+        this.tableList = r.data.data.records;
         this.pageTotal = r.data.data.total;
       }
     } catch (e) {
@@ -77,13 +76,13 @@ export default class $1 extends Mixins(DateFormat, PageData) {
 
   public onPageChange(type: string, val: number) {
     this.page[type] = val;
-    this.getPageList();
+    this.getList();
   }
 
   public onMenuSelect(command: 'edit' | 'delete' | number, row: any) {
     if (command === 'edit') {
     } else if (command === 'delete') {
-      this.$confirm(
+      this.confirm(
         i18n.t('message.delete-confirm-msg'),
         i18n.t('host-mgr.delete-host-title'),
         {
@@ -94,7 +93,7 @@ export default class $1 extends Mixins(DateFormat, PageData) {
           this.delRow(row.id);
         })
         .catch(() => {
-          this.$message.info('取消删除');
+          this.message.info('取消删除');
         });
     } else {
     }
@@ -104,7 +103,7 @@ export default class $1 extends Mixins(DateFormat, PageData) {
     try {
       const r = await HTTP_CLUSTER.deleteCluster(clusterName);
       if (r.data.code === 0) {
-        this.$message.success(i18n.t('cluster-mgr.delete-cluster-success'));
+        this.message.success(i18n.t('cluster-mgr.delete-cluster-success'));
         this.getList();
       }
     } catch (error) {
