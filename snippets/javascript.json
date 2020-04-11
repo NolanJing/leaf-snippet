@@ -1,0 +1,13 @@
+{
+    "template": {
+        "prefix": "lfj",
+        "body": [
+            "<lf2 js>",
+            "\t<${1:div}$2>",
+            "\t\t$0",
+            "\t</${1:div}>",
+            "</lf2>"
+        ],
+        "description": "template element"
+    }
+}

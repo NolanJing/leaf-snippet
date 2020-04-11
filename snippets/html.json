@@ -1,0 +1,13 @@
+{
+    "template": {
+        "prefix": "lf",
+        "body": [
+            "<lf html>",
+            "\t<${1:div}$2>",
+            "\t\t$0",
+            "\t</${1:div}>",
+            "</lf>"
+        ],
+        "description": "template element"
+    }
+}

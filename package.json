@@ -1,0 +1,65 @@
+{
+  "name": "leaf-snippet",
+  "displayName": "leaf-snippet",
+  "description": "",
+  "version": "0.0.1",
+  "publisher": "Nolan",
+  "engines": {
+    "vscode": "^1.29.0"
+  },
+  "categories": [
+    "Snippets"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/NolanJing/leaf-i18n"
+  },
+  "scripts": {
+    "build": "node ./snippets/scripts/generate-snippets-json.js",
+    "pkg": "vsce package"
+  },
+  "contributes": {
+    "snippets": [
+      {
+        "language": "javascript",
+        "path": "./snippets/javascript.json"
+      },
+      {
+        "language": "typescript",
+        "path": "./snippets/javascript.json"
+      },
+      {
+        "language": "html",
+        "path": "./snippets/javascript.json"
+      },
+      {
+        "language": "html",
+        "path": "./snippets/html.json"
+      },
+      {
+        "language": "vue-html",
+        "path": "./snippets/html.json"
+      },
+      {
+        "language": "html",
+        "path": "./snippets/vue.json"
+      },
+      {
+        "language": "vue",
+        "path": "./snippets/javascript.json"
+      },
+      {
+        "language": "vue",
+        "path": "./snippets/html.json"
+      },
+      {
+        "language": "vue",
+        "path": "./snippets/vue.json"
+      }
+    ]
+  },
+  "devDependencies": {
+    "fs": "0.0.1-security",
+    "path": "^0.12.7"
+  }
+}
