@@ -5,7 +5,7 @@
       <el-button type="primary">新建</el-button>
       <div class="ef-search--group">
         <el-input v-model="form.name">
-          <el-button icon="el-icon-search" slot="append" @click.stop=""></el-button>
+          <el-button icon="el-icon-search" slot="append" @click.stop></el-button>
         </el-input>
         <div class="ef-button--group">
           <el-button icon="el-icon-refresh"></el-button>

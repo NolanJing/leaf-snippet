@@ -8,47 +8,44 @@
   </el-dialog>
 </template>
 <script lang="ts">
-  import { Component, Vue, Prop } from 'vue-property-decorator';
-  // import HTTP_CS_IMAGE_HUB_USER, {CsImageHubUserVO} from '@/apis/app/cs-image-hub-user';
+import { Component, Vue, Prop } from 'vue-property-decorator';
+// import HTTP_CS_IMAGE_HUB_USER, {CsImageHubUserVO} from '@/apis/app/cs-image-hub-user';
 
-  @Component({
-    name: '$0Dialog'
+@Component({
+  name: '$0Dialog',
+})
+export default class $0Dialog extends Vue {
+  @Prop({
+    default: {},
   })
-  export default class $0Dialog extends Vue {
-    @Prop({
-      default: {}
-    })
-    public itemData!: any
- 
+  public itemData!: any;
 
-    public loading: LoadingVO = {
-      confirm: false
-    }
+  public loading: LoadingVO = {
+    confirm: false,
+  };
 
-  
-    public get title() {
-      return  this.isEdit ?'编辑':'新增'
-    }
-
-    public get isEdit() {
-      return  true;
-    }
-
-    public onConfirm () {
-       this.$emit('on-close', {
-        name: 'hub',
-        type: 'success'
-      })
-    }
-
-    public onClose (type = 'dismiss') {
-      this.$emit('on-close', {
-        name: 'hub',
-        type: type
-      })
-    }
+  public get title() {
+    return this.isEdit ? '编辑' : '新增';
   }
+
+  public get isEdit() {
+    return true;
+  }
+
+  public onConfirm() {
+    this.$emit('on-close', {
+      name: 'hub',
+      type: 'success',
+    });
+  }
+
+  public onClose(type = 'dismiss') {
+    this.$emit('on-close', {
+      name: 'hub',
+      type: type,
+    });
+  }
+}
 </script>
 <style lang="scss" scoped>
- 
 </style>

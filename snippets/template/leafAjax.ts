@@ -1,13 +1,13 @@
-//<%desc api 请求%> 
-this.loading$0 = true;
+//<%desc api 请求%>
+this.loading.$1 = true;
 let params = {};
-try{
-  const r = await HTTP_XX.get(params)
-  if(r.data.code === 0){
-    $1
+try {
+  const r = await HTTP_XX.get(params);
+  if (r.data.code === 0) {
+    $0;
   }
-}catch(e){
+} catch (e) {
   console.log('e: ', e);
-}finally{
-  this.loading$0 = false;
+} finally {
+  this.loading.$1 = false;
 }
