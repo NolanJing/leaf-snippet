@@ -1,13 +1,21 @@
 {
-    "template": {
-        "prefix": "lfj",
-        "body": [
-            "<lf2 js>",
-            "\t<${1:div}$2>",
-            "\t\t$0",
-            "\t</${1:div}>",
-            "</lf2>"
-        ],
-        "description": "template element"
-    }
+  "leafAjax": {
+    "name": "leafAjax",
+    "prefix": "leafAjax",
+    "body": [
+      "this.loading$0 = true;\r",
+      "let params = {};\r",
+      "try{\r",
+      "  const r = await HTTP_XX.get(params)\r",
+      "  if(r.data.code === 0){\r",
+      "    $1\r",
+      "  }\r",
+      "}catch(e){\r",
+      "  console.log('e: ', e);\r",
+      "}finally{\r",
+      "  this.loading$0 = false;\r",
+      "}"
+    ],
+    "description": "api 请求"
+  }
 }
