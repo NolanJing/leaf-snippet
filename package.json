@@ -1,8 +1,8 @@
 {
   "name": "leaf-snippet",
   "displayName": "leaf-snippet",
-  "description": "",
-  "version": "1.0.0",
+  "description": "🍧🍦 Leaf 模板代码 适配 ui-core  🍦🍧",
+  "version": "1.0.2",
   "publisher": "Nolan",
   "engines": {
     "vscode": "^1.29.0"

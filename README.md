@@ -1,4 +1,4 @@
-### 提供 Leaf 项目常用页面的模板代码。例如列表页、弹窗页面
+### 🍧🍦 提供 Leaf 项目常用页面的模板代码。例如列表页、弹窗页面🍦🍧
 
 ![demo](https://raw.githubusercontent.com/NolanJing/leaf-i18n/master/leaf_snippet_demo.gif)
 
