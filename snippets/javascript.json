@@ -1,20 +1,21 @@
 {
-  "leafAjax": {
-    "name": "leafAjax",
-    "prefix": "leafAjax",
+  "lfAjax": {
+    "name": "lfAjax",
+    "prefix": "lfAjax",
     "body": [
-      "this.loading$0 = true;\r",
+      "this.loading.$1 = true;\r",
       "let params = {};\r",
-      "try{\r",
-      "  const r = await HTTP_XX.get(params)\r",
-      "  if(r.data.code === 0){\r",
-      "    $1\r",
+      "try {\r",
+      "  const r = await HTTP_XX.get(params);\r",
+      "  if (r.data.code === 0) {\r",
+      "    $0;\r",
       "  }\r",
-      "}catch(e){\r",
+      "} catch (e) {\r",
       "  console.log('e: ', e);\r",
-      "}finally{\r",
-      "  this.loading$0 = false;\r",
-      "}"
+      "} finally {\r",
+      "  this.loading.$1 = false;\r",
+      "}\r",
+      ""
     ],
     "description": "api 请求"
   }

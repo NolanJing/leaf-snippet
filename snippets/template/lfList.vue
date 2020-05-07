@@ -1,30 +1,40 @@
-<%desc 带搜索的列表页%> 
+<%desc 带搜索的列表页%>
 <template>
   <view-container>
     <div class="ef-action-wrap">
       <el-button type="primary">新建</el-button>
+      <el-button icon="el-icon-refresh"></el-button>
       <div class="ef-search--group">
-        <el-input v-model="form.name">
-          <el-button icon="el-icon-search" slot="append" @click.stop></el-button>
+        <el-input
+          v-model="form.name"
+          @clear="getPageList"
+          @keyup.enter.native="getPageList"
+        >
+          <el-button
+            icon="el-icon-search"
+            slot="append"
+            @click.stop="getPageList"
+          ></el-button>
         </el-input>
-        <div class="ef-button--group">
-          <el-button icon="el-icon-refresh"></el-button>
-          <el-button icon="el-icon-download"></el-button>
-        </div>
       </div>
     </div>
 
-    <div v-loading="loading.table">
+    <div v-loading="loading.table" class="mt-16">
       <el-table :data="$0">
         <el-table-column prop="name" label="名称">
-          <template slot-scope="{row}">
-            <el-button type="text" @click="checkDetail(row)">{{row.name}}</el-button>
+          <template slot-scope="{ row }">
+            <el-button type="text" @click="checkDetail(row)">{{
+              row.name
+            }}</el-button>
           </template>
         </el-table-column>
         <el-table-column prop="test" label="测试"></el-table-column>
         <el-table-column width="160" label="操作">
-          <template slot-scope="{row}">
-            <el-dropdown @command="(command)=>onMenuSelect(command,row)" size="small">
+          <template slot-scope="{ row }">
+            <el-dropdown
+              @command="(command) => onMenuSelect(command, row)"
+              size="small"
+            >
               <el-button type="text">更多</el-button>
               <el-dropdown-menu slot="dropdown">
                 <el-dropdown-item command="edit">编辑</el-dropdown-item>
@@ -35,9 +45,9 @@
         </el-table-column>
       </el-table>
       <el-pagination
-        v-if="pageTotal > 10 "
-        @size-change="val => onPageChange('pageSize', val)"
-        @current-change="val => onPageChange('pageNow', val)"
+        v-if="pageTotal > 10"
+        @size-change="(val) => onPageChange('pageSize', val)"
+        @current-change="(val) => onPageChange('pageNow', val)"
         :current-page="page.pageNow"
         :total="pageTotal"
       ></el-pagination>
@@ -51,9 +61,9 @@ import PageData from '@/mixins/page_data';
 // import HTTP_API from '@/api/app/controller-name';
 
 @Component({
-  name: '$1',
+  name: '$1View',
 })
-export default class $1 extends Mixins(DateFormat, PageData) {
+export default class $1View extends Mixins(DateFormat, PageData) {
   public loading: LoadingVO = {
     table: false,
   };
@@ -86,23 +96,30 @@ export default class $1 extends Mixins(DateFormat, PageData) {
   }
 
   public onMenuSelect(command: 'edit' | 'delete' | number, row: any) {
-    if (command === 'edit') {
-    } else if (command === 'delete') {
-      this.$confirm(
-        i18n.t('message.delete-confirm-msg'),
-        i18n.t('host-mgr.delete-host-title'),
-        {
-          type: 'warning',
+    let actionMap: any = {
+      recovery: {
+        msg: '是否手动回收？',
+        action: () => {
+          this.recovery(row.pvName);
         },
-      )
-        .then(() => {
-          this.delRow(row.id);
-        })
-        .catch(() => {
-          this.$message.info('取消删除');
-        });
-    } else {
-    }
+      },
+      delete: {
+        msg: i18n.t('message.delete-confirm-msg'),
+        action: () => {
+          this.delRow(row.pvName);
+        },
+      },
+    };
+
+    this.$confirm(actionMap[command].msg, actionMap[command].title, {
+      type: 'warning',
+    })
+      .then(() => {
+        actionMap[command].action();
+      })
+      .catch(() => {
+        this.$message.info('操作已取消！');
+      });
   }
 
   public async delRow(id: any) {
@@ -119,5 +136,4 @@ export default class $1 extends Mixins(DateFormat, PageData) {
   }
 }
 </script>
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>
