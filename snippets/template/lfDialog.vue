@@ -18,28 +18,28 @@ export default class $0Dialog extends Vue {
   @Prop({
     default: {},
   })
-  public itemData!: any;
+  private itemData!: any;
 
-  public loading: LoadingVO = {
+  private loading: LoadingVO = {
     confirm: false,
   };
 
-  public get title() {
+  private get title() {
     return this.isEdit ? '编辑' : '新增';
   }
 
-  public get isEdit() {
+  private get isEdit() {
     return true;
   }
 
-  public onConfirm() {
+  private onConfirm() {
     this.$emit('on-close', {
       name: 'hub',
       type: 'success',
     });
   }
 
-  public onClose(type = 'dismiss') {
+  private onClose(type = 'dismiss') {
     this.$emit('on-close', {
       name: 'hub',
       type: type,
