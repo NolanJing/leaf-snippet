@@ -2,7 +2,7 @@
   "name": "leaf-snippet",
   "displayName": "leaf-snippet",
   "description": "🍧🍦 Leaf 模板代码 适配 ui-core  🍦🍧",
-  "version": "1.0.4",
+  "version": "1.0.6",
   "publisher": "Nolan",
   "engines": {
     "vscode": "^1.29.0"

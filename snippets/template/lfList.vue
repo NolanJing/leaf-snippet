@@ -1,46 +1,56 @@
 <%desc 带搜索的列表页%>
 <template>
-  <view-container>
-    <div class="ef-action-wrap">
-      <el-button type="primary">新建</el-button>
-      <div class="ef-search--group">
-        <el-input
-          v-model="form.name"
-          @clear="getSearch"
-          @keyup.enter.native="getSearch"
-        >
-          <el-button
-            icon="el-icon-search"
-            slot="append"
-            @click.stop="getSearch"
-          ></el-button>
-        </el-input>
-      </div>
-       <div class="ef-button--group">
-          <el-button icon="el-icon-refresh" @click.stop="getSearch"></el-button>
-        </div>
-    </div>
+	<view-container>
+		<div class="ef-action-wrap">
+			<el-button type="primary">新建</el-button>
+			<div class="ef-search--group">
+				<el-input
+					v-model="form.name"
+					@clear="getSearch"
+					@keyup.enter.native="getSearch"
+					placeholder="请输入名称搜索"
+				>
+					<el-button
+						icon="el-icon-search"
+						slot="append"
+						@click.stop="getSearch"
+					></el-button>
+				</el-input>
+				<div class="ef-button--group">
+					<el-button
+						icon="el-icon-refresh"
+						@click.stop="getSearch"
+					></el-button>
+				</div>
+			</div>
+		</div>
 
-    <div v-loading="loading.table" class="mt-16">
-      <el-table :data="$0">
-        <el-table-column prop="name" label="名称">
-          <template slot-scope="{ row }">
-            <el-button type="text" @click="checkDetail(row)">{{
-              row.name
-            }}</el-button>
-          </template>
-        </el-table-column>
-        <el-table-column prop="test" label="测试"></el-table-column>
-        <el-table-column width="160" label="操作">
-          <template slot-scope="{ row }">
-             <el-button type="text" @click="onMenuSelect('edit', row)"
-              >编辑</el-button
-            >
-            <el-button type="text" @click="onMenuSelect('delete', row)"
-              >删除</el-button
-            >
-       
-          <!--   <el-dropdown
+		<div v-loading="loading.table" class="mt-16">
+			<el-table :data="$0">
+				<el-table-column prop="name" label="名称">
+					<template slot-scope="{ row }">
+						<el-button
+							type="text"
+							@click="onMenuSelect('detail', row)"
+							>{{ row.name }}</el-button
+						>
+					</template>
+				</el-table-column>
+				<el-table-column prop="test" label="测试"></el-table-column>
+				<el-table-column width="160" label="操作">
+					<template slot-scope="{ row }">
+						<el-button
+							type="text"
+							@click="onMenuSelect('edit', row)"
+							>编辑</el-button
+						>
+						<el-button
+							type="text"
+							@click="onMenuSelect('delete', row)"
+							>删除</el-button
+						>
+
+						<!--   <el-dropdown
               @command="(command) => onMenuSelect(command, row)"
               size="small"
             >
@@ -50,18 +60,18 @@
                 <el-dropdown-item command="delete">删除</el-dropdown-item>
               </el-dropdown-menu>
             </el-dropdown> -->
-          </template>
-        </el-table-column>
-      </el-table>
-      <el-pagination
-        v-if="pageTotal > 10"
-        @size-change="(val) => onPageChange('pageSize', val)"
-        @current-change="(val) => onPageChange('pageNow', val)"
-        :current-page="page.pageNow"
-        :total="pageTotal"
-      ></el-pagination>
-    </div>
-  </view-container>
+					</template>
+				</el-table-column>
+			</el-table>
+			<el-pagination
+				v-if="pageTotal > 10"
+				@size-change="(val) => onPageChange('pageSize', val)"
+				@current-change="(val) => onPageChange('pageNow', val)"
+				:current-page="page.pageNow"
+				:total="pageTotal"
+			></el-pagination>
+		</div>
+	</view-container>
 </template>
 <script lang="ts">
 import { Component, Mixins } from "vue-property-decorator";
@@ -109,12 +119,14 @@ export default class $1View extends Mixins(DateFormat, PageData) {
 		this.getPageList();
 	}
 
-	private onMenuSelect(command: "edit" | "delete" | number, row: any) {
+	private onMenuSelect(
+		command: "detail" | "edit" | "delete" | number,
+		row: any = {}
+	) {
 		let actionMap: any = {
-			recovery: {
-				msg: "是否手动回收？",
+			detail: {
 				action: () => {
-					this.recovery(row.pvName);
+					 console.log(row)
 				},
 			},
 			delete: {
@@ -136,6 +148,10 @@ export default class $1View extends Mixins(DateFormat, PageData) {
 					this.$message.info("操作已取消！");
 				});
 		}
+
+		if (!actionMap[command].msg) {
+			actionMap[command].action();
+		}
 	}
 
 	private async delRow(id: any) {
@@ -154,5 +170,4 @@ export default class $1View extends Mixins(DateFormat, PageData) {
 	}
 }
 </script>
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>
